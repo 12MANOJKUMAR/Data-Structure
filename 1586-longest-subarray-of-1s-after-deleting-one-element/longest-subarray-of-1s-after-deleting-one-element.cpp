@@ -11,6 +11,7 @@ public:
         {
             if(nums[right]==0) zero++;
 
+        //   shrinking condition
             while(zero>1){
                 if(nums[left]==0) zero--;
                 left++;

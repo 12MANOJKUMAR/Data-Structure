@@ -7,7 +7,7 @@ public:
         int n=nums.size();
         int ans=0;
 
-        for(int right=0;right<n;right++)
+        while(right<n)
         {
             if(nums[right]==0) zero++;
 
@@ -17,7 +17,7 @@ public:
             }
             ans =max(ans, right-left+1-zero);
 
-
+        right++;
         }
 
         return ans==n ? ans-1 : ans;

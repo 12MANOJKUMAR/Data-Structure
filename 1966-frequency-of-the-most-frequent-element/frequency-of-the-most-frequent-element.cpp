@@ -5,8 +5,10 @@ public:
     long long total = 0;
     int left = 0;
     int result = 0;
+    int n=nums.size();
+    int right=0;
 
-    for (int right = 0; right < nums.size(); ++right) {
+     while(right < n){
         total += nums[right];
 
         // Cost to make all elements in window equal to nums[right]
@@ -16,6 +18,8 @@ public:
         }
 
         result = max(result, right - left + 1);
+
+        right ++;
     }
 
     return result;

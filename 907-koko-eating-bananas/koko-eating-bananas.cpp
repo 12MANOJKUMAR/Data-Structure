@@ -3,7 +3,7 @@ public:
     bool check(const long long &mid, vector<int>& p,int h){
        long long ans=0;
         for(auto it: p){
-            ans+=(it+mid-1)/mid;
+            ans+=ceil(it/(double)mid);
         }
         return ans<=h;
     }

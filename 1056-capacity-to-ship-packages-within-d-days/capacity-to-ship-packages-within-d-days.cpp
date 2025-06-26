@@ -1,7 +1,7 @@
 class Solution {
 public:
     static bool check(const int& capct, vector<int>& wt, int d) {
-    int daycnt = 1, currentwt = 0;
+    int daycnt = 0, currentwt = 0;
         for (auto it : wt) {
             if (it > capct) return false;
             if (currentwt + it > capct) {
@@ -11,9 +11,8 @@ public:
                 currentwt += it;
             }
         }
-        return daycnt <= d;
+        return daycnt+1 <= d;
     }
-
 
     int shipWithinDays(vector<int>& weights, int days) {
         int low = 0;

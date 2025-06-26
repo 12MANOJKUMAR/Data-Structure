@@ -16,7 +16,7 @@ public:
 
 
     int shipWithinDays(vector<int>& weights, int days) {
-        int low = *max_element(weights.begin(), weights.end());
+        int low = *max_element(weights.begin(), weights.end())-1;
         int high = accumulate(weights.begin(), weights.end(), 0);
 
         while (high > low + 1) {
@@ -27,7 +27,6 @@ public:
                 low = mid;
             }
         }
-        if (check(low, weights, days)) return low;
         return high;
     
             // because FFFFTTTT pattern → high is the first True

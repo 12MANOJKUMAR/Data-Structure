@@ -1,28 +1,33 @@
 class Solution {
 public:
-    int maxFrequency(vector<int>& nums, int k) {
-    sort(nums.begin(), nums.end());
-    long long total = 0;
-    int left = 0;
-    int result = 0;
-    int n=nums.size();
-    int right=0;
+    bool check(int mid,vector<int>& num, vector<long long> & pf, const int & k){
+        int n=num.size();
+        for(int i=mid-1;i<n;i++){
+            int w= i-mid+1;
+            long long total = 1LL * mid * num[i]; 
+            long long currsum = pf[i]-(w>0 ? pf[w-1]: 0);
 
-     while(right < n){
-        total += nums[right];
-
-        // Cost to make all elements in window equal to nums[right]
-        while ((long long)nums[right] * (right - left + 1) - total > k) {
-            total -= nums[left];
-            left++;
+        long long reqop= total -currsum;
+        if(reqop<=k) return true;
         }
-
-        result = max(result, right - left + 1);
-
-        right ++;
+        return false;
     }
+    int maxFrequency(vector<int>& nums, int k) {
+       sort(nums.begin(), nums.end());
+       int l=0, r=nums.size()+1;
+       int n=nums.size();
+       vector<long long> prefix(n);
+       prefix[0] = nums[0];
+       for(int i =1; i < n; ++i)
+        prefix[i] = prefix[i - 1] + nums[i];
 
-    return result;
-}
-
+       while(r>l+1){
+        int mid =(r+l)/2;
+        if(check(mid, nums,prefix, k)){
+            l= mid;
+        }
+        else r=mid;
+       } 
+        return l;
+    }
 };

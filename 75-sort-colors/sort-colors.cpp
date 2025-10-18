@@ -1,18 +1,19 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        int flag;
-        int n= nums.size();
-        for(int i=0;i<n-1;i++){
-             flag = 0;
-            for(int j=0;j<n-1-i;j++){
-                if(nums[j+1]<nums[j]){
-                    swap(nums[j],nums[j+1]);
-                    flag++;
-                } 
+        // insertion sort
+    int n= nums.size();
+        for(int i=1;i<n;i++){
+            int ele = nums[i];
+            int j = i-1;
+
+            while(j>=0 && nums[j]>ele){
+                nums[j+1] = nums[j];
+                j=j-1;
             }
-            if(flag==0) break;
+            nums[j+1]=ele;
         }
+
         return ;
         
     }
